@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Vector;
 
 
@@ -46,5 +47,12 @@ public class ProdutoCollectionRepository {
 
     public static List<Produto> findByCategoria(Categoria categoria) {
         return produtos.stream().filter(p ->p.getCategoria().equals(categoria)).toList();
+    }
+
+    public static Produto findByID(long id) {
+        return produtos.stream()
+                .filter(p -> Objects.equals(p.getId(), id))
+                .findFirst()
+                .orElse(null);
     }
 }
