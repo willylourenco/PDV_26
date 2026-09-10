@@ -73,6 +73,31 @@ public class Main {
 
     private static void consultarProdutoPorId() {
 
+        try {
+            Long id = Long.parseLong(
+                    JOptionPane.showInputDialog(
+                            null,
+                            "Informe o ID do produto:"
+                    )
+            );
+
+            Produto produto = ProdutoCollectionRepository.findByID(id);
+
+            if (produto == null) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Produto não encontrado para o ID: " + id
+                );
+            } else {
+                ProdutoView.show(produto);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "ID inválido!"
+            );
+        }
     }
 }
 
